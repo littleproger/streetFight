@@ -1,0 +1,50 @@
+.fighter-preview___root {
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 250px;
+  position:relative;
+}
+.fighter-preview-info_imgPlace{
+  width: 100%;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+}
+.fighter-preview___right {
+  align-items: flex-end;
+
+}
+
+.fighter-preview___left {
+  align-items: flex-start;
+}
+.fighter-preview-info__root{
+  width: 100%;
+  height: 120px;
+  max-width: inherit;
+  background-color: rgba(248, 248, 248, 0.877);
+  border-radius: 50px;
+  border:3px solid rgb(184, 120, 57);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.fighter-preview-info__list{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: inherit;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+.fighter-preview-info__elem{
+  color:black;
+  font-size: 20px;
+}
