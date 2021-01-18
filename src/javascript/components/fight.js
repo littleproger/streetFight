@@ -132,11 +132,6 @@ export async function fight(firstFighter, secondFighter) {
     }
 
     function attack(attacker,defender){
-      defender.health -= getHitPower(attacker.fighterObj);
-      changeHealthIndicator(defender.healthIndicator, defender.health, defender.fighterObj)
-    }
-
-    function blockedAttack(attacker,defender){
       defender.health -= getDamage(attacker.fighterObj, defender.fighterObj);
       changeHealthIndicator(defender.healthIndicator, defender.health, defender.fighterObj)
     }
@@ -156,13 +151,11 @@ export async function fight(firstFighter, secondFighter) {
         }
       //Blocked attacks
       if (pressed.has(controls.PlayerOneBlock) && pressed.has(controls.PlayerTwoAttack)){
-        blockedAttack(fightInfo.secondFighter,fightInfo.firstFighter)
         pressed.delete(controls.PlayerTwoAttack)
         attackBlockMove("right","left",-350,-100)
         console.log("1 Blocked")
       }
       if(pressed.has(controls.PlayerTwoBlock) && pressed.has(controls.PlayerOneAttack)){
-        blockedAttack(fightInfo.firstFighter,fightInfo.secondFighter)
         pressed.delete(controls.PlayerOneAttack)
         attackBlockMove("left","right",350,100)
         console.log("2 Blocked")
