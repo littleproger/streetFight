@@ -10,7 +10,8 @@ export async function fight(firstFighter, secondFighter) {
       health:firstFighter.health,
       block:false,
       orderToAttack:true,
-      orderToCriticalHit:false
+      orderToCriticalHit:false,
+      critTimer:"10"
     },
     secondFighter:{
       fighterObj:secondFighter,
@@ -19,9 +20,74 @@ export async function fight(firstFighter, secondFighter) {
       health:secondFighter.health,
       block:false,
       orderToAttack:true,
-      orderToCriticalHit:false
+      orderToCriticalHit:false,
+      critTimer:"10"
     }
   }
+  var critIndecators = createElement({
+    tagName:'div',
+    className: 'fight-critIndicators'
+  })
+  var critIndecatorFirst = createElement({
+    tagName:'div',
+    className: 'fight-critIndicator_first fight-critIndicator',
+    attributes:{id:"critIndicator_first"}
+  })
+  var critIndecatorSecond = createElement({
+    tagName:'div',
+    className: 'fight-critIndicator_second fight-critIndicator',
+    attributes:{id:"critIndicator_second"}
+  })
+  var root=document.getElementById('root')
+
+  critIndecators.appendChild(critIndecatorFirst)
+  critIndecators.appendChild(critIndecatorSecond)
+  root.appendChild(critIndecators)
+
+  const firstIndicator = document.getElementById("critIndicator_first")
+  const secondIndicator = document.getElementById("critIndicator_second")
+  // const leftFighter = 
+  const rightFighter = document.getElementsByClassName("arena___right-fighter")
+  
+  function changeCritTime(fighter,indicator){
+    setTimeout(function tick() {
+      if(!fighter.orderToCriticalHit){
+        fighter.critTimer-=1
+        indicator.innerHTML=fighter.critTimer
+        setTimeout(tick, 1000);
+      }else{
+        fighter.critTimer="10"
+        indicator.innerHTML= "READY"
+      }
+    }, 1000);
+  }
+  function attackMove(fighter,movpxf,movpxs){
+    let elem = document.getElementsByClassName(`arena___${fighter}-fighter`)[0]
+    elem.style.transform = `translateX(${movpxf}px)`;
+    setTimeout(()=>{
+      elem.style.transform = `translateX(${movpxs}px)`;
+    },200)
+  }
+  function critMove(fighter){
+    let elem = document.getElementsByClassName(`arena___${fighter}-fighter`)[0]
+    elem.classList.add(`move-${fighter}`);
+    setTimeout(()=>{
+      elem.classList.remove(`move-${fighter}`);
+    },300)
+  }
+  function attackBlockMove(attacker,defender,movpxf,movpxs){
+    let attackerElem = document.getElementsByClassName(`arena___${attacker}-fighter`)[0]
+    let defenderElem = document.getElementsByClassName(`arena___${defender}-fighter`)[0]
+    attackerElem.style.transform = `translateX(${movpxf}px)`;
+    defenderElem.style.transform = `translateX(${movpxs}px)`;
+    setTimeout(()=>{
+      attackerElem.style.transform = `translateX(${0}px)`;
+      defenderElem.style.transform = `translateX(${0}px)`;
+    },200)
+  }
+
+  changeCritTime(fightInfo.firstFighter,firstIndicator)
+  changeCritTime(fightInfo.secondFighter,secondIndicator)
   return new Promise((resolve) => {
     setTimeout(() => {
       fightInfo.firstFighter.orderToCriticalHit = true;
@@ -92,31 +158,39 @@ export async function fight(firstFighter, secondFighter) {
       if (pressed.has(controls.PlayerOneBlock) && pressed.has(controls.PlayerTwoAttack)){
         blockedAttack(fightInfo.secondFighter,fightInfo.firstFighter)
         pressed.delete(controls.PlayerTwoAttack)
+        attackBlockMove("right","left",-350,-100)
         console.log("1 Blocked")
       }
       if(pressed.has(controls.PlayerTwoBlock) && pressed.has(controls.PlayerOneAttack)){
         blockedAttack(fightInfo.firstFighter,fightInfo.secondFighter)
         pressed.delete(controls.PlayerOneAttack)
+        attackBlockMove("left","right",350,100)
         console.log("2 Blocked")
       }
       //CriticalHits
       if(checkPressed(pressed, ...controls.PlayerOneCriticalHitCombination) && fightInfo.firstFighter.orderToCriticalHit){
         critHit(fightInfo.firstFighter,fightInfo.secondFighter)
+        changeCritTime(fightInfo.firstFighter,firstIndicator)
+        critMove("left")
         console.log("1 crit")
       }
       if(checkPressed(pressed, ...controls.PlayerTwoCriticalHitCombination) && fightInfo.secondFighter.orderToCriticalHit){
         critHit(fightInfo.secondFighter, fightInfo.firstFighter)
+        changeCritTime(fightInfo.secondFighter,secondIndicator)
+        critMove("right")
         console.log("2 crit")
       }
       //Attaks
       if(checkAttackOrder(fightInfo.firstFighter) && checkPressed(pressed,controls.PlayerOneAttack)){
         attack(fightInfo.firstFighter,fightInfo.secondFighter);
         pressed.delete(controls.PlayerOneAttack)
+        attackMove("left",350,0)
         console.log("1 attack")
       }
       if(checkAttackOrder(fightInfo.secondFighter) && checkPressed(pressed,controls.PlayerTwoAttack)){
         attack(fightInfo.secondFighter,fightInfo.firstFighter)
         pressed.delete(controls.PlayerTwoAttack)
+        attackMove("right",-350,0)
         console.log("2 attack")
       }
       checkHealth(fightInfo.firstFighter.health, fightInfo.secondFighter.health)
@@ -155,3 +229,6 @@ export function getBlockPower(fighter) {
   return power
   // return block power
 }
+
+
+
