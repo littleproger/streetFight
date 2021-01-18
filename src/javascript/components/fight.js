@@ -1,25 +1,28 @@
 import { controls } from '../../constants/controls';
+import {createElement} from "../helpers/domHelper";
 
 export async function fight(firstFighter, secondFighter) {
   let fightInfo ={
     firstFighter:{
-      healthIndicatorFirst:document.getElementById("left-fighter-indicator"),
+      fighterObj:firstFighter,
+      player:'1',
+      healthIndicator:document.getElementById("left-fighter-indicator"),
       health:firstFighter.health,
       block:false,
       orderToAttack:true,
       orderToCriticalHit:false
     },
     secondFighter:{
-      healthIndicatorSecond:document.getElementById("right-fighter-indicator"),
+      fighterObj:secondFighter,
+      player:"2",
+      healthIndicator:document.getElementById("right-fighter-indicator"),
       health:secondFighter.health,
       block:false,
       orderToAttack:true,
       orderToCriticalHit:false
     }
   }
-
   return new Promise((resolve) => {
-
     setTimeout(() => {
       fightInfo.firstFighter.orderToCriticalHit = true;
       fightInfo.secondFighter.orderToCriticalHit = true; }, 10000)
@@ -27,10 +30,10 @@ export async function fight(firstFighter, secondFighter) {
 
     function checkHealth(healthFirst, healthSecond) {
       if (healthFirst <= 0) {
-        fightInfo.firstFighter.healthIndicatorFirst.style.width = `0%`;
+        fightInfo.firstFighter.healthIndicator.style.width = `0%`;
         resolve(secondFighter);
       } else if (healthSecond <= 0) {
-        fightInfo.secondFighter.healthIndicatorSecond.style.width = `0%`;
+        fightInfo.secondFighter.healthIndicator.style.width = `0%`;
         resolve(firstFighter);
       }
     }
@@ -39,82 +42,88 @@ export async function fight(firstFighter, secondFighter) {
       indicator.style.width = `${health / fighter.health * 100}%`
     }
 
-    function presedKeys(func, type,fightersInfo, ...codes) {
-      let pressed = new Set();
-      document.addEventListener('keydown', function (event) {
-        pressed.add(event.code);
-        for (let code of codes) {
-          if (!pressed.has(code) || pressed.size !== codes.length) {
-            return;
-          }
+    function checkPressed(buttons, ...mustBePrsessed) {
+      for (let code of mustBePrsessed) {
+        if (!buttons.has(code)) {
+          return 0;
         }
-        if (pressed.has(controls.PlayerOneBlock)){
-          fightersInfo.firstFighter.block = true;
+      }
+      return true;
+    }
+    function checkAttackOrder(fighter) {
+      if (fighter.block){
+        return false
+      }else{
+        return true;
+      }
+    }
+
+    function critHit(attacker,defender){
+      attacker.orderToCriticalHit=false;
+      defender.health -= attacker.fighterObj.attack * 2;
+      changeHealthIndicator(defender.healthIndicator, defender.health, defender.fighterObj)
+      setTimeout(()=>{attacker.orderToCriticalHit=true},10000)
+    }
+
+    function attack(attacker,defender){
+      defender.health -= getHitPower(attacker.fighterObj);
+      changeHealthIndicator(defender.healthIndicator, defender.health, defender.fighterObj)
+    }
+
+    function blockedAttack(attacker,defender){
+      defender.health -= getDamage(attacker.fighterObj, defender.fighterObj);
+      changeHealthIndicator(defender.healthIndicator, defender.health, defender.fighterObj)
+    }
+
+    let pressed = new Set();
+    document.addEventListener('keydown', function (event) {
+      pressed.add(event.code);
+      if (pressed.has(controls.PlayerOneBlock)){
+          fightInfo.firstFighter.block = true;
         }else{
-          fightersInfo.firstFighter.block = false;
+          fightInfo.firstFighter.block = false;
         }
-        if (pressed.has(controls.PlayerTwoBlock)) {
-          fightersInfo.secondFighter.block = true;
+      if (pressed.has(controls.PlayerTwoBlock)) {
+          fightInfo.secondFighter.block = true;
         }else{
-          fightersInfo.secondFighter.block = false;
+          fightInfo.secondFighter.block = false;
         }
-        pressed.clear();
-        if (fightersInfo.firstFighter.orderToAttack && type === 'attack' && !fightersInfo.firstFighter.block) {
-          fightersInfo.firstFighter.orderToAttack = false;
-          func();
-          setTimeout(() => { fightersInfo.firstFighter.orderToAttack = true }, 300)
-        }
-        if (fightersInfo.secondFighter.orderToAttack && type === 'attack' && !fightersInfo.secondFighter.block) {
-          fightersInfo.secondFighter.orderToAttack = false;
-          func();
-          setTimeout(() => { fightersInfo.firstFighter.orderToAttack = true }, 300)
-        }
-        if (fightersInfo.firstFighter.orderToCriticalHit && type === "critHitFirst") {
-          fightersInfo.firstFighter.orderToCriticalHit = false
-          func();
-          setTimeout(() => { fightersInfo.firstFighter.orderToCriticalHit = true }, 10000)
-        }
-        if (fightersInfo.secondFighter.orderToCriticalHit && type === "critHitSecond") {
-          fightersInfo.secondFighter.orderToCriticalHit = false
-          func();
-          setTimeout(() => { fightersInfo.secondFighter.orderToCriticalHit = true }, 10000)
-        }
-        if (type === 'blockedAttack') { func() }
-        checkHealth(fightersInfo.firstFighter.health, fightersInfo.secondFighter.health)
+      //Blocked attacks
+      if (pressed.has(controls.PlayerOneBlock) && pressed.has(controls.PlayerTwoAttack)){
+        blockedAttack(fightInfo.secondFighter,fightInfo.firstFighter)
+        pressed.delete(controls.PlayerTwoAttack)
+        console.log("1 Blocked")
+      }
+      if(pressed.has(controls.PlayerTwoBlock) && pressed.has(controls.PlayerOneAttack)){
+        blockedAttack(fightInfo.firstFighter,fightInfo.secondFighter)
+        pressed.delete(controls.PlayerOneAttack)
+        console.log("2 Blocked")
+      }
+      //CriticalHits
+      if(checkPressed(pressed, ...controls.PlayerOneCriticalHitCombination) && fightInfo.firstFighter.orderToCriticalHit){
+        critHit(fightInfo.firstFighter,fightInfo.secondFighter)
+        console.log("1 crit")
+      }
+      if(checkPressed(pressed, ...controls.PlayerTwoCriticalHitCombination) && fightInfo.secondFighter.orderToCriticalHit){
+        critHit(fightInfo.secondFighter, fightInfo.firstFighter)
+        console.log("2 crit")
+      }
+      //Attaks
+      if(checkAttackOrder(fightInfo.firstFighter) && checkPressed(pressed,controls.PlayerOneAttack)){
+        attack(fightInfo.firstFighter,fightInfo.secondFighter);
+        pressed.delete(controls.PlayerOneAttack)
+        console.log("1 attack")
+      }
+      if(checkAttackOrder(fightInfo.secondFighter) && checkPressed(pressed,controls.PlayerTwoAttack)){
+        attack(fightInfo.secondFighter,fightInfo.firstFighter)
+        pressed.delete(controls.PlayerTwoAttack)
+        console.log("2 attack")
+      }
+      checkHealth(fightInfo.firstFighter.health, fightInfo.secondFighter.health)
       });
       document.addEventListener('keyup', function (event) {
         pressed.delete(event.code);
       });
-
-    }
-    //Blocked attacks
-    presedKeys(() => {
-      fightInfo.firstFighter.health -= getDamage(secondFighter, firstFighter);
-      changeHealthIndicator(fightInfo.firstFighter.healthIndicatorFirst, fightInfo.firstFighter.health, firstFighter)
-    }, 'blockedAttack',fightInfo, controls.PlayerOneBlock, controls.PlayerTwoAttack)
-    presedKeys(() => {
-      fightInfo.secondFighter.health -= getDamage(firstFighter, secondFighter);
-      changeHealthIndicator(fightInfo.secondFighter.healthIndicatorSecond, fightInfo.secondFighter.health, secondFighter)
-    }, 'blockedAttack',fightInfo, controls.PlayerTwoBlock, controls.PlayerOneAttack)
-    //CriticalHits
-    presedKeys(() => {
-      fightInfo.secondFighter.health -= firstFighter.attack * 2;
-      changeHealthIndicator(fightInfo.secondFighter.healthIndicatorSecond, fightInfo.secondFighter.health, secondFighter)
-    }, 'critHitFirst',fightInfo, ...controls.PlayerOneCriticalHitCombination)
-    presedKeys(() => {
-      fightInfo.firstFighter.health -= secondFighter.attack * 2;
-      changeHealthIndicator(fightInfo.firstFighter.healthIndicatorFirst, fightInfo.firstFighter.health, firstFighter)
-    }, 'critHitSecond',fightInfo, ...controls.PlayerTwoCriticalHitCombination)
-    //Attaks
-    presedKeys(() => {
-      fightInfo.secondFighter.health -= getHitPower(firstFighter);
-      changeHealthIndicator(fightInfo.secondFighter.healthIndicatorSecond, fightInfo.secondFighter.health, secondFighter)
-    }, 'attack',fightInfo, controls.PlayerOneAttack)
-    presedKeys(() => {
-      fightInfo.firstFighter.health -= getHitPower(secondFighter);
-      changeHealthIndicator(fightInfo.firstFighter.healthIndicatorFirst, fightInfo.firstFighter.health, firstFighter)
-    }, 'attack',fightInfo, controls.PlayerTwoAttack)
-    // resolve the promise with the winner when fight is over
   });
 }
 
