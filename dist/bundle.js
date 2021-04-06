@@ -118,7 +118,7 @@ var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(/*! ../../resources/aren
 exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-exports.push([module.i, ".arena___root {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-repeat: no-repeat;\n  background-position: center;\n}\n\n.arena___battlefield {\n  display: flex;\n  justify-content: space-around;\n  margin-bottom: 60px;\n}\n\n.arena___right-fighter img {\n  transform: scaleX(-1);\n}\n\n.arena___fighter img {\n  height: 480px;\n}\n\n.arena___fight-status {\n  display: flex;\n  margin: 30px;\n  justify-content: center;\n}\n\n.arena___fighter-name {\n  color: black;\n  -webkit-text-fill-color: white;\n  -webkit-text-stroke-width: 1px;\n  font-size: 26px;\n  font-family: 'Arial Black';\n  font-weight: 700;\n}\n\n.arena___fighter-indicator {\n  width: 100%;\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  margin: 0 30px;\n}\n\n.arena___health-indicator {\n  width: 100%;\n  height: 25px;\n  border: 2px solid;\n  border-radius: 5px;\n  margin: 0 10px;\n  overflow: hidden;\n}\n\n.arena___health-bar {\n  height: 100%;\n  width: 100%;\n  background-color: #ebd759;\n}\n", ""]);
+exports.push([module.i, ".arena___root {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-repeat: no-repeat;\n  background-position: center;\n}\n\n.arena___battlefield {\n  display: flex;\n  justify-content: space-around;\n  margin-bottom: 60px;\n}\n\n.arena___right-fighter img {\n  transform: scaleX(-1);\n}\n.move-right{\n  animation:right 300ms linear;\n}\n.move-left{\n  animation:left 300ms linear;\n}\n@keyframes right{\n  0%{\n    translate: 0,0;\n  }25%{\n    translate:-175px -200px;\n  }50%{\n    translate:-350px 0;\n  }75%{\n    translate: 0,0;\n  }100%{\n\n  }\n}\n@keyframes left{\n  0%{\n    translate: 0,0;\n  }25%{\n    translate:175px -200px;\n  }50%{\n    translate:350px 0;\n  }75%{\n    translate: 0,0;\n  }100%{\n\n  }\n}\n.arena___fighter img {\n  height: 480px;\n}\n\n\n\n.arena___fight-status {\n  display: flex;\n  margin: 30px;\n  justify-content: center;\n}\n\n.arena___fighter-name {\n  color: black;\n  -webkit-text-fill-color: white;\n  -webkit-text-stroke-width: 1px;\n  font-size: 26px;\n  font-family: 'Arial Black';\n  font-weight: 700;\n}\n\n.arena___fighter-indicator {\n  width: 100%;\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  margin: 0 30px;\n}\n\n.arena___health-indicator {\n  width: 100%;\n  height: 25px;\n  border: 2px solid;\n  border-radius: 5px;\n  margin: 0 10px;\n  overflow: hidden;\n}\n\n.arena___health-bar {\n  height: 100%;\n  width: 100%;\n  background-color: #ebd759;\n}\n.fight-critIndicators{\n  background-size:10px 10px;\n  position: absolute;\n  top:110px;\n  width: 85%;\n  height: 40px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.fight-critIndicator{\n  width: 100%;\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  color:white;\n  font-size: 24px;\n}\n.fight-critIndicator_first{\n  width: 100px;\n  height: 50px;\n  background-color:rgba(207, 48, 0, 0.822);\n}\n.fight-critIndicator_second{\n  width: 100px;\n  height: 50px;\n  background-color:rgba(207, 48, 0, 0.822);\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -136,7 +136,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".fighter-preview___root {\n  display: flex;\n  flex-direction: column;\n  flex-basis: 250px;\n}\n\n.fighter-preview___right {\n  align-items: flex-end;\n}\n\n.fighter-preview___left {\n  align-items: flex-start;\n}\n", ""]);
+exports.push([module.i, ".fighter-preview___root {\n  min-height: 600px;\n  display: flex;\n  flex-direction: column;\n  flex-basis: 250px;\n  position:relative;\n}\n.fighter-preview-info_imgPlace{\n  width: 100%;\n  min-height: 480px;\n  display: flex;\n  align-items: center;\n}\n.fighter-preview___right {\n  align-items: flex-end;\n\n}\n\n.fighter-preview___left {\n  align-items: flex-start;\n}\n.fighter-preview-info__root{\n  width: 100%;\n  height: 120px;\n  max-width: inherit;\n  background-color: rgba(248, 248, 248, 0.877);\n  border-radius: 50px;\n  border:3px solid rgb(184, 120, 57);\n  display: flex;\n  justify-content: start;\n  align-items: center;\n  position: absolute;\n  bottom: 0;\n  left: 0;\n}\n.fighter-preview-info__list{\n  padding: 0;\n  margin: 0;\n  width: 100%;\n  max-width: inherit;\n  list-style: none;\n  display: flex;\n  flex-direction: column;\n  justify-content: start;\n  align-items: center;\n}\n.fighter-preview-info__elem{\n  color:black;\n  font-size: 20px;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -157,7 +157,7 @@ var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(/*! ../../resources/main
 exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-exports.push([module.i, ".fighters___root {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  height: 100%;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center;\n}\n\n.fighters___list {\n  margin: 40px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.fighters___fighter {\n  height: 150px;\n  max-width: 150px;\n  flex: 1;\n  display: flex;\n  justify-content: center;\n  cursor: pointer;\n  background: #ffdfa7;\n  margin: 10px;\n  border: 5px solid #ca9650;\n}\n\n.fighters___fighter:hover {\n  background: #cbe4f8;\n  border: 5px solid #267abf;\n}\n", ""]);
+exports.push([module.i, ".fighters___root {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  height: 100%;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center;\n}\n\n.fighters___list {\n  margin: 60px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.fighters___fighter {\n  height: 150px;\n  max-width: 150px;\n  flex: 1;\n  display: flex;\n  justify-content: center;\n  cursor: pointer;\n  background: #ffdfa7;\n  margin: 10px;\n  border: 5px solid #ca9650;\n}\n\n.fighters___fighter:hover {\n  background: #cbe4f8;\n  border: 5px solid #267abf;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -193,7 +193,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".preview-container___root {\n  flex: 1;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin: 40px;\n}\n\n.preview-container___versus-block {\n  display: flex;\n  flex-direction: column;\n  margin: 0 50px;\n  align-items: center;\n  justify-content: center;\n}\n\n.preview-container___versus-img {\n  width: 130px;\n}\n\n.preview-container___fight-btn {\n  padding: 8px 35px;\n  justify-self: right;\n  text-align: center;\n  background: #ba0303;\n  margin: 40px 0;\n  color: #f8f9f4;\n  font-size: 22px;\n  cursor: pointer;\n  font-weight: bold;\n  box-shadow: 6px 6px 7px 0px rgba(0, 0, 0, 0.75);\n}\n\n.preview-container___fight-btn.disabled {\n  opacity: 0;\n}\n", ""]);
+exports.push([module.i, ".preview-container___root {\n  flex: 1;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin: 40px;\n  margin-bottom: 0;\n}\n\n.preview-container___versus-block {\n  display: flex;\n  flex-direction: column;\n  margin: 0 50px;\n  align-items: center;\n  justify-content: center;\n}\n\n.preview-container___versus-img {\n  width: 130px;\n}\n\n.preview-container___fight-btn {\n  padding: 8px 35px;\n  justify-self: right;\n  text-align: center;\n  background: #ba0303;\n  margin: 40px 0;\n  color: #f8f9f4;\n  font-size: 22px;\n  cursor: pointer;\n  font-weight: bold;\n  box-shadow: 6px 6px 7px 0px rgba(0, 0, 0, 0.75);\n}\n\n.preview-container___fight-btn.disabled {\n  opacity: 0;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -697,6 +697,27 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/constants/controls.js":
+/*!***********************************!*\
+  !*** ./src/constants/controls.js ***!
+  \***********************************/
+/*! exports provided: controls */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "controls", function() { return controls; });
+const controls = {
+  PlayerOneAttack: 'KeyA',
+  PlayerOneBlock: 'KeyD',
+  PlayerTwoAttack: 'KeyJ',
+  PlayerTwoBlock: 'KeyL',
+  PlayerOneCriticalHitCombination: ['KeyQ', 'KeyW', 'KeyE'],
+  PlayerTwoCriticalHitCombination: ['KeyU', 'KeyI', 'KeyO']
+};
+
+/***/ }),
+
 /***/ "./src/javascript/app.js":
 /*!*******************************!*\
   !*** ./src/javascript/app.js ***!
@@ -754,13 +775,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderArena", function() { return renderArena; });
 /* harmony import */ var _helpers_domHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/domHelper */ "./src/javascript/helpers/domHelper.js");
 /* harmony import */ var _fighterPreview__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./fighterPreview */ "./src/javascript/components/fighterPreview.js");
+/* harmony import */ var _fight__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fight */ "./src/javascript/components/fight.js");
+/* harmony import */ var _modal_winner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modal/winner */ "./src/javascript/components/modal/winner.js");
+
+
 
 
 function renderArena(selectedFighters) {
   const root = document.getElementById('root');
   const arena = createArena(selectedFighters);
   root.innerHTML = '';
-  root.append(arena); // todo:
+  root.append(arena);
+  Object(_fight__WEBPACK_IMPORTED_MODULE_2__["fight"])(selectedFighters[0], selectedFighters[1]).then(winner => {
+    Object(_modal_winner__WEBPACK_IMPORTED_MODULE_3__["showWinnerModal"])(winner);
+  }).catch(e => {
+    console.log(e);
+  }); // todo:
   // - start the fight
   // - when fight is finished show winner
 }
@@ -844,6 +874,264 @@ function createFighter(fighter, position) {
 
 /***/ }),
 
+/***/ "./src/javascript/components/fight.js":
+/*!********************************************!*\
+  !*** ./src/javascript/components/fight.js ***!
+  \********************************************/
+/*! exports provided: fight, getDamage, getHitPower, getBlockPower */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fight", function() { return fight; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDamage", function() { return getDamage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHitPower", function() { return getHitPower; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBlockPower", function() { return getBlockPower; });
+/* harmony import */ var _constants_controls__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../constants/controls */ "./src/constants/controls.js");
+/* harmony import */ var _helpers_domHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/domHelper */ "./src/javascript/helpers/domHelper.js");
+
+
+async function fight(firstFighter, secondFighter) {
+  let fightInfo = {
+    firstFighter: {
+      fighterObj: firstFighter,
+      player: '1',
+      healthIndicator: document.getElementById("left-fighter-indicator"),
+      health: firstFighter.health,
+      block: false,
+      orderToAttack: true,
+      orderToCriticalHit: false,
+      critTimer: "10"
+    },
+    secondFighter: {
+      fighterObj: secondFighter,
+      player: "2",
+      healthIndicator: document.getElementById("right-fighter-indicator"),
+      health: secondFighter.health,
+      block: false,
+      orderToAttack: true,
+      orderToCriticalHit: false,
+      critTimer: "10"
+    }
+  };
+  var critIndecators = Object(_helpers_domHelper__WEBPACK_IMPORTED_MODULE_1__["createElement"])({
+    tagName: 'div',
+    className: 'fight-critIndicators'
+  });
+  var critIndecatorFirst = Object(_helpers_domHelper__WEBPACK_IMPORTED_MODULE_1__["createElement"])({
+    tagName: 'div',
+    className: 'fight-critIndicator_first fight-critIndicator',
+    attributes: {
+      id: "critIndicator_first"
+    }
+  });
+  var critIndecatorSecond = Object(_helpers_domHelper__WEBPACK_IMPORTED_MODULE_1__["createElement"])({
+    tagName: 'div',
+    className: 'fight-critIndicator_second fight-critIndicator',
+    attributes: {
+      id: "critIndicator_second"
+    }
+  });
+  var root = document.getElementById('root');
+  critIndecators.appendChild(critIndecatorFirst);
+  critIndecators.appendChild(critIndecatorSecond);
+  root.appendChild(critIndecators);
+  const firstIndicator = document.getElementById("critIndicator_first");
+  const secondIndicator = document.getElementById("critIndicator_second"); // const leftFighter = 
+
+  const rightFighter = document.getElementsByClassName("arena___right-fighter");
+
+  function changeCritTime(fighter, indicator) {
+    setTimeout(function tick() {
+      if (!fighter.orderToCriticalHit) {
+        fighter.critTimer -= 1;
+        indicator.innerHTML = fighter.critTimer;
+        setTimeout(tick, 1000);
+      } else {
+        fighter.critTimer = "10";
+        indicator.innerHTML = "READY";
+      }
+    }, 1000);
+  }
+
+  function attackMove(fighter, movpxf, movpxs) {
+    let elem = document.getElementsByClassName(`arena___${fighter}-fighter`)[0];
+    elem.style.transform = `translateX(${movpxf}px)`;
+    setTimeout(() => {
+      elem.style.transform = `translateX(${movpxs}px)`;
+    }, 200);
+  }
+
+  function critMove(fighter) {
+    let elem = document.getElementsByClassName(`arena___${fighter}-fighter`)[0];
+    elem.classList.add(`move-${fighter}`);
+    setTimeout(() => {
+      elem.classList.remove(`move-${fighter}`);
+    }, 300);
+  }
+
+  function attackBlockMove(attacker, defender, movpxf, movpxs) {
+    let attackerElem = document.getElementsByClassName(`arena___${attacker}-fighter`)[0];
+    let defenderElem = document.getElementsByClassName(`arena___${defender}-fighter`)[0];
+    attackerElem.style.transform = `translateX(${movpxf}px)`;
+    defenderElem.style.transform = `translateX(${movpxs}px)`;
+    setTimeout(() => {
+      attackerElem.style.transform = `translateX(${0}px)`;
+      defenderElem.style.transform = `translateX(${0}px)`;
+    }, 200);
+  }
+
+  changeCritTime(fightInfo.firstFighter, firstIndicator);
+  changeCritTime(fightInfo.secondFighter, secondIndicator);
+  return new Promise(resolve => {
+    setTimeout(() => {
+      fightInfo.firstFighter.orderToCriticalHit = true;
+      fightInfo.secondFighter.orderToCriticalHit = true;
+    }, 10000);
+    alert("FIGHT");
+
+    function checkHealth(healthFirst, healthSecond) {
+      if (healthFirst <= 0) {
+        fightInfo.firstFighter.healthIndicator.style.width = `0%`;
+        resolve(secondFighter);
+      } else if (healthSecond <= 0) {
+        fightInfo.secondFighter.healthIndicator.style.width = `0%`;
+        resolve(firstFighter);
+      }
+    }
+
+    function changeHealthIndicator(indicator, health, fighter) {
+      indicator.style.width = `${health / fighter.health * 100}%`;
+    }
+
+    function checkPressed(buttons, ...mustBePrsessed) {
+      for (let code of mustBePrsessed) {
+        if (!buttons.has(code)) {
+          return 0;
+        }
+      }
+
+      return true;
+    }
+
+    function checkAttackOrder(fighter) {
+      if (fighter.block) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    function critHit(attacker, defender) {
+      attacker.orderToCriticalHit = false;
+      defender.health -= attacker.fighterObj.attack * 2;
+      changeHealthIndicator(defender.healthIndicator, defender.health, defender.fighterObj);
+      setTimeout(() => {
+        attacker.orderToCriticalHit = true;
+      }, 10000);
+    }
+
+    function attack(attacker, defender) {
+      defender.health -= getDamage(attacker.fighterObj, defender.fighterObj);
+      changeHealthIndicator(defender.healthIndicator, defender.health, defender.fighterObj);
+    }
+
+    let pressed = new Set();
+    document.addEventListener('keydown', function (event) {
+      pressed.add(event.code);
+
+      if (pressed.has(_constants_controls__WEBPACK_IMPORTED_MODULE_0__["controls"].PlayerOneBlock)) {
+        fightInfo.firstFighter.block = true;
+      } else {
+        fightInfo.firstFighter.block = false;
+      }
+
+      if (pressed.has(_constants_controls__WEBPACK_IMPORTED_MODULE_0__["controls"].PlayerTwoBlock)) {
+        fightInfo.secondFighter.block = true;
+      } else {
+        fightInfo.secondFighter.block = false;
+      } //Blocked attacks
+
+
+      if (pressed.has(_constants_controls__WEBPACK_IMPORTED_MODULE_0__["controls"].PlayerOneBlock) && pressed.has(_constants_controls__WEBPACK_IMPORTED_MODULE_0__["controls"].PlayerTwoAttack)) {
+        pressed.delete(_constants_controls__WEBPACK_IMPORTED_MODULE_0__["controls"].PlayerTwoAttack);
+        attackBlockMove("right", "left", -350, -100);
+        console.log("1 Blocked");
+      }
+
+      if (pressed.has(_constants_controls__WEBPACK_IMPORTED_MODULE_0__["controls"].PlayerTwoBlock) && pressed.has(_constants_controls__WEBPACK_IMPORTED_MODULE_0__["controls"].PlayerOneAttack)) {
+        pressed.delete(_constants_controls__WEBPACK_IMPORTED_MODULE_0__["controls"].PlayerOneAttack);
+        attackBlockMove("left", "right", 350, 100);
+        console.log("2 Blocked");
+      } //CriticalHits
+
+
+      if (checkPressed(pressed, ..._constants_controls__WEBPACK_IMPORTED_MODULE_0__["controls"].PlayerOneCriticalHitCombination) && fightInfo.firstFighter.orderToCriticalHit) {
+        critHit(fightInfo.firstFighter, fightInfo.secondFighter);
+        changeCritTime(fightInfo.firstFighter, firstIndicator);
+        critMove("left");
+        console.log("1 crit");
+      }
+
+      if (checkPressed(pressed, ..._constants_controls__WEBPACK_IMPORTED_MODULE_0__["controls"].PlayerTwoCriticalHitCombination) && fightInfo.secondFighter.orderToCriticalHit) {
+        critHit(fightInfo.secondFighter, fightInfo.firstFighter);
+        changeCritTime(fightInfo.secondFighter, secondIndicator);
+        critMove("right");
+        console.log("2 crit");
+      } //Attaks
+
+
+      if (checkAttackOrder(fightInfo.firstFighter) && checkPressed(pressed, _constants_controls__WEBPACK_IMPORTED_MODULE_0__["controls"].PlayerOneAttack)) {
+        attack(fightInfo.firstFighter, fightInfo.secondFighter);
+        pressed.delete(_constants_controls__WEBPACK_IMPORTED_MODULE_0__["controls"].PlayerOneAttack);
+        attackMove("left", 350, 0);
+        console.log("1 attack");
+      }
+
+      if (checkAttackOrder(fightInfo.secondFighter) && checkPressed(pressed, _constants_controls__WEBPACK_IMPORTED_MODULE_0__["controls"].PlayerTwoAttack)) {
+        attack(fightInfo.secondFighter, fightInfo.firstFighter);
+        pressed.delete(_constants_controls__WEBPACK_IMPORTED_MODULE_0__["controls"].PlayerTwoAttack);
+        attackMove("right", -350, 0);
+        console.log("2 attack");
+      }
+
+      checkHealth(fightInfo.firstFighter.health, fightInfo.secondFighter.health);
+    });
+    document.addEventListener('keyup', function (event) {
+      pressed.delete(event.code);
+    });
+  });
+}
+function getDamage(attacker, defender) {
+  let attack = getHitPower(attacker);
+  let block = getBlockPower(defender);
+
+  if (attack < block) {
+    return 0;
+  } else {
+    return attack - block;
+  } // return damage
+
+}
+function getHitPower(fighter) {
+  const criticalHitChance = (min, max) => {
+    return Math.random() * (max - min) + min;
+  };
+
+  const power = fighter.attack * criticalHitChance(1, 2);
+  return power; // return hit power
+}
+function getBlockPower(fighter) {
+  const dodgeChance = (min, max) => {
+    return Math.random() * (max - min) + min;
+  };
+
+  const power = fighter.defense * dodgeChance(1, 2);
+  return power; // return block power
+}
+
+/***/ }),
+
 /***/ "./src/javascript/components/fighterPreview.js":
 /*!*****************************************************!*\
   !*** ./src/javascript/components/fighterPreview.js ***!
@@ -862,7 +1150,38 @@ function createFighterPreview(fighter, position) {
   const fighterElement = Object(_helpers_domHelper__WEBPACK_IMPORTED_MODULE_0__["createElement"])({
     tagName: 'div',
     className: `fighter-preview___root ${positionClassName}`
-  }); // todo: show fighter info (image, name, health, etc.)
+  });
+  const infoBlock = Object(_helpers_domHelper__WEBPACK_IMPORTED_MODULE_0__["createElement"])({
+    tagName: 'div',
+    className: 'fighter-preview-info__root'
+  });
+  const infoList = Object(_helpers_domHelper__WEBPACK_IMPORTED_MODULE_0__["createElement"])({
+    tagName: 'ul',
+    className: 'fighter-preview-info__list'
+  });
+  const placeForImg = Object(_helpers_domHelper__WEBPACK_IMPORTED_MODULE_0__["createElement"])({
+    tagName: 'div',
+    className: 'fighter-preview-info_imgPlace'
+  });
+  const selectedInfo = ["Name", "Health", "Attack", "Defense"];
+
+  try {
+    placeForImg.append(createFighterImage(fighter));
+    fighterElement.append(placeForImg);
+    selectedInfo.forEach(param => {
+      const info = Object(_helpers_domHelper__WEBPACK_IMPORTED_MODULE_0__["createElement"])({
+        tagName: 'li',
+        className: 'fighter-preview-info__elem'
+      });
+      info.innerHTML = param + ": " + fighter[param.toLowerCase()];
+      infoList.appendChild(info);
+    });
+    infoBlock.append(infoList);
+    fighterElement.append(infoBlock);
+  } catch {
+    null;
+  } // todo: show fighter info (image, name, health, etc.)
+
 
   return fighterElement;
 }
@@ -901,6 +1220,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _arena__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./arena */ "./src/javascript/components/arena.js");
 /* harmony import */ var _resources_versus_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../resources/versus.png */ "./resources/versus.png");
 /* harmony import */ var _fighterPreview__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fighterPreview */ "./src/javascript/components/fighterPreview.js");
+/* harmony import */ var _services_fightersService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/fightersService */ "./src/javascript/services/fightersService.js");
+
 
 
 
@@ -917,7 +1238,16 @@ function createFightersSelector() {
   };
 }
 const fighterDetailsMap = new Map();
-async function getFighterInfo(fighterId) {// get fighter info from fighterDetailsMap or from service and write it to fighterDetailsMap
+async function getFighterInfo(fighterId) {
+  if (!fighterDetailsMap.has(fighterId)) {
+    const newFighterService = new _services_fightersService__WEBPACK_IMPORTED_MODULE_4__["FighterService"]();
+    const fighter = newFighterService.getFighterDetails(fighterId);
+    fighterDetailsMap.set(fighterId, fighter);
+    return fighter;
+  } else {
+    return fighterDetailsMap.get(fighterId);
+  } // get fighter info from fighterDetailsMap or from service and write it to fighterDetailsMap
+
 }
 
 function renderSelectedFighters(selectedFighters) {
@@ -1027,6 +1357,119 @@ function createImage(fighter) {
     attributes
   });
   return imgElement;
+}
+
+/***/ }),
+
+/***/ "./src/javascript/components/modal/modal.js":
+/*!**************************************************!*\
+  !*** ./src/javascript/components/modal/modal.js ***!
+  \**************************************************/
+/*! exports provided: showModal */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showModal", function() { return showModal; });
+/* harmony import */ var _helpers_domHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers/domHelper */ "./src/javascript/helpers/domHelper.js");
+
+function showModal({
+  title,
+  bodyElement,
+  onClose = () => {}
+}) {
+  const root = getModalContainer();
+  const modal = createModal({
+    title,
+    bodyElement,
+    onClose
+  });
+  root.append(modal);
+}
+
+function getModalContainer() {
+  return document.getElementById('root');
+}
+
+function createModal({
+  title,
+  bodyElement,
+  onClose
+}) {
+  const layer = Object(_helpers_domHelper__WEBPACK_IMPORTED_MODULE_0__["createElement"])({
+    tagName: 'div',
+    className: 'modal-layer'
+  });
+  const modalContainer = Object(_helpers_domHelper__WEBPACK_IMPORTED_MODULE_0__["createElement"])({
+    tagName: 'div',
+    className: 'modal-root'
+  });
+  const header = createHeader(title, onClose);
+  modalContainer.append(header, bodyElement);
+  layer.append(modalContainer);
+  return layer;
+}
+
+function createHeader(title, onClose) {
+  const headerElement = Object(_helpers_domHelper__WEBPACK_IMPORTED_MODULE_0__["createElement"])({
+    tagName: 'div',
+    className: 'modal-header'
+  });
+  const titleElement = Object(_helpers_domHelper__WEBPACK_IMPORTED_MODULE_0__["createElement"])({
+    tagName: 'span'
+  });
+  const closeButton = Object(_helpers_domHelper__WEBPACK_IMPORTED_MODULE_0__["createElement"])({
+    tagName: 'div',
+    className: 'close-btn'
+  });
+  titleElement.innerText = title;
+  closeButton.innerText = '×';
+
+  const close = () => {
+    hideModal();
+    onClose();
+  };
+
+  closeButton.addEventListener('click', close);
+  headerElement.append(titleElement, closeButton);
+  return headerElement;
+}
+
+function hideModal() {
+  const modal = document.getElementsByClassName('modal-layer')[0];
+  modal === null || modal === void 0 ? void 0 : modal.remove();
+}
+
+/***/ }),
+
+/***/ "./src/javascript/components/modal/winner.js":
+/*!***************************************************!*\
+  !*** ./src/javascript/components/modal/winner.js ***!
+  \***************************************************/
+/*! exports provided: showWinnerModal */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showWinnerModal", function() { return showWinnerModal; });
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal */ "./src/javascript/components/modal/modal.js");
+/* harmony import */ var _fighterPreview__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../fighterPreview */ "./src/javascript/components/fighterPreview.js");
+/* harmony import */ var _helpers_domHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers/domHelper */ "./src/javascript/helpers/domHelper.js");
+
+
+
+function showWinnerModal(fighter) {
+  const title = `Winner: ${fighter.name}`;
+  const bodyElement = Object(_helpers_domHelper__WEBPACK_IMPORTED_MODULE_2__["createElement"])({
+    tagName: 'div',
+    className: 'modal-body'
+  });
+  const img = Object(_fighterPreview__WEBPACK_IMPORTED_MODULE_1__["createFighterImage"])(fighter);
+  bodyElement.append(img);
+  Object(_modal__WEBPACK_IMPORTED_MODULE_0__["showModal"])({
+    title,
+    bodyElement
+  }); // call showModal function 
 }
 
 /***/ }),
@@ -1188,14 +1631,14 @@ const fightersDetails = [{
 /*!****************************************************!*\
   !*** ./src/javascript/services/fightersService.js ***!
   \****************************************************/
-/*! exports provided: fighterService */
+/*! exports provided: FighterService, fighterService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FighterService", function() { return FighterService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fighterService", function() { return fighterService; });
 /* harmony import */ var _helpers_apiHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/apiHelper */ "./src/javascript/helpers/apiHelper.js");
-
 
 class FighterService {
   async getFighters() {
@@ -1208,12 +1651,19 @@ class FighterService {
     }
   }
 
-  async getFighterDetails(id) {// todo: implement this method
+  async getFighterDetails(id) {
+    try {
+      const endpoint = `details/fighter/${id}.json`;
+      const fighterDetails = await Object(_helpers_apiHelper__WEBPACK_IMPORTED_MODULE_0__["callApi"])(endpoint, 'GET');
+      return fighterDetails;
+    } catch (error) {
+      throw error;
+    } // todo: implement this method
     // endpoint - `details/fighter/${id}.json`;
+
   }
 
 }
-
 const fighterService = new FighterService();
 
 /***/ }),
